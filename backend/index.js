@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+
 import { connectDB } from "./db/connectDB.js";
 
 import authRoutes from "./routes/auth.route.js";
@@ -13,7 +15,8 @@ const app = express();
 // Middleware
 app.use(cors()); // Mengizinkan akses dari semua domain
 app.use(express.json()); // Agar bisa menerima request body JSON
-console.log("oleoleoleoleoleoleole")
+app.use(cookieParser()); //allows us to parse incoming cookies
+
 const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
